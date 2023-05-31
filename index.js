@@ -60,6 +60,15 @@ app.on("ready", () => {
     }
 
     const contextMenuTemplate = [
+      {
+        label: "Pin Window",
+        type: "checkbox",
+        checked: store.get("isWindowPinned", false),
+        click: (menuItem) => {
+          mb.window.setAlwaysOnTop(!menuItem.checked);
+          store.set("isWindowPinned", menuItem.checked);
+        },
+      },
       // add links to github repo and vince's twitter
       {
         label: "Quit",

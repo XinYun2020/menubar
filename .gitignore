@@ -90,3 +90,7 @@ out/
 forge.config.js
 
 .env
+
+Makefile
+.prettierignore
+package-lock.json
