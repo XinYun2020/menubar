@@ -23,7 +23,6 @@ const image = nativeImage.createFromPath(
   path.join(__dirname, `images/newiconTemplate.png`)
 );
 
-
 app.on("ready", () => {
 
   const tray = new Tray(image);
@@ -52,6 +51,7 @@ app.on("ready", () => {
   mb.on("ready", () => {
     const { window } = mb;
 
+    store.get('isWindowPinned') ? window.setAlwaysOnTop(true) : window.setAlwaysOnTop(false);
 
     if (process.platform !== "darwin") {
       window.setSkipTaskbar(true);
@@ -60,15 +60,16 @@ app.on("ready", () => {
     }
 
     const contextMenuTemplate = [
-      {
-        label: "Pin Window",
-        type: "checkbox",
-        checked: store.get("isWindowPinned", false),
-        click: (menuItem) => {
-          mb.window.setAlwaysOnTop(!menuItem.checked);
-          store.set("isWindowPinned", menuItem.checked);
-        },
-      },
+      // {
+      //   label: "Pin Window",
+      //   type: "checkbox",
+      //   checked: store.get("isWindowPinned", false),
+      //   click: (menuItem) => {
+      //     const isWindowPinned = menuItem.checked;
+      //     store.set("isWindowPinned", isWindowPinned);
+      //     mb.window.setAlwaysOnTop(isWindowPinned);
+      //   },
+      // },
       // add links to github repo and vince's twitter
       {
         label: "Quit",
